@@ -1,14 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-toolbar [color]="isRecording ? 'danger': 'primary' ">
+        <ion-title>
+            Ionic Blank
+        </ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+<ion-content padding>
+    <ion-row>
+        <ion-col>
+            <ion-button expand="full" (click)="getPermission()">Get Permission</ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button expand="full" (click)="startListening()">Start Listening</ion-button>
+        </ion-col>
+        <ion-col>
+            <ion-button expand="full" (click)="stopListening()" *ngIf="isIos()">Stop Listening</ion-button>
+        </ion-col>
+    </ion-row>
+
+    <ion-card>
+        <ion-card-header>This is what I understood...</ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item *ngFor="let match of matches">
+                    {{match}}
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+
 </ion-content>
